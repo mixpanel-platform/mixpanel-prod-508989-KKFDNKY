@@ -246,10 +246,6 @@ function main() {
   });
 }
 
-function getDay(event) {
-  return new Date(event.time).toISOString().substr(0, 10);
-}
-
 
 function query3() {
 
@@ -258,6 +254,9 @@ MP.api.jql(function main() {
     from_date: "2016-05-15",
     to_date: "2016-06-14"
   })
+  function getDay(event) {
+  return new Date(event.time).toISOString().substr(0, 10);
+  }
   .filter(function(event){
     return event.name === "USER"
   })
