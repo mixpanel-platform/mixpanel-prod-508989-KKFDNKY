@@ -246,6 +246,10 @@ function main() {
   });
 }
 
+function getDay(event) {
+  return new Date(event.time).toISOString().substr(0, 10);
+}
+
 
 function query3() {
 
@@ -268,12 +272,10 @@ MP.api.jql(function main() {
     return user_count.value >= 5;
   })
   .groupBy(["key.1"], mixpanel.reducer.count());
-}
-
-function getDay(event) {
-  return new Date(event.time).toISOString().substr(0, 10);
 }).done(function(results){
   console.log("dau query: " + results)
+
+
 
   //update the view
   var signup = results;
