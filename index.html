@@ -154,11 +154,11 @@ var end_date = moment().format('L')
 
 <!-- make the queries -->
 <script language="javascript">
-function query1() {
+function query1(start, end) {
     MP.api.jql(function main() {
   return Events({
-    from_date: start_date,
-    to_date: end_date
+    from_date: start,
+    to_date: end
   })
   .filter(function (event) { 
     return event.properties.event_type === "mattertag_add" 
@@ -314,7 +314,7 @@ $(document).on("ready", function(){
 
 $('#dataRefresh').on('click', function() { 
 // run querys here:
-  query1();
+  query1(start_date, end_date);
   query2();
   query3();
 
