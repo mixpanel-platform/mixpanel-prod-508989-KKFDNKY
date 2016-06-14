@@ -249,14 +249,15 @@ function main() {
 
 function query3() {
 
+function getDay(event) {
+  return new Date(event.time).toISOString().substr(0, 10);
+}
+
 MP.api.jql(function main() {
   return Events({
     from_date: "2016-05-15",
     to_date: "2016-06-14"
   })
-  function getDay(event) {
-  return new Date(event.time).toISOString().substr(0, 10);
-  }
   .filter(function(event){
     return event.name === "USER"
   })
