@@ -249,13 +249,13 @@ function main() {
 
 function query3() {
 
-function getDay(event) {
-  return new Date(event.time).toISOString().substr(0, 10);
-}
 
 MP.api.jql(function main() {
+  function getDay(event) {
+  return new Date(event.time).toISOString().substr(0, 10);
+  }
   return Events({
-    from_date: "2016-05-15",
+    from_date: "2016-06-04",
     to_date: "2016-06-14"
   })
   .filter(function(event){
@@ -271,15 +271,21 @@ MP.api.jql(function main() {
   .filter(function(user_count) {
     return user_count.value >= 5;
   })
-  .groupBy(["key.1"], mixpanel.reducer.count());
-}).done(function(results){
+  .groupBy(["key.0"], mixpanel.reducer.count())
+  .map(function(user){
+    return user.value
+  })
+  .reduce(mixpanel.reducer.sum());
+  
+}
+  ).done(function(results){
   console.log("dau query: " + results)
 
 
 
   //update the view
   var signup = results;
-  $('#barThree').css("height", signup/500*100+"%");
+  $('#barThree').css("height", signup/150000*100+"%");
   $('#SIGNUPS h2').text(signup)
 
 });
