@@ -184,7 +184,7 @@ function main() {
   function (e) {
     return e.properties.event_type === "showcase_gui" || (e.properties.event_type == 'view_pano' && e.properties.navigation_source == 'self_guided');
   }
-];
+]
 
   // get the number of steps completed by each user
   .groupByUser(['properties.model_id'], function(steps_completed, events) {
