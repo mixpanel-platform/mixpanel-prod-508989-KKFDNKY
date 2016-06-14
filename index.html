@@ -144,11 +144,11 @@ button
     </div>
 
 <script>
-  // define dates
+  // define date ranges
 var start_date = moment().subtract(10, 'days').calendar()
 var end_date = moment().format('L')
-console.log(start_date)
-console.log(end_date)
+// console.log(start_date)
+// console.log(end_date)
 
 </script>
 
@@ -157,8 +157,8 @@ console.log(end_date)
 function query1() {
     MP.api.jql(function main() {
   return Events({
-    from_date: "2016-02-02",
-    to_date: "2016-04-26"
+    from_date: start_date,
+    to_date: end_date
   })
   .filter(function (event) { 
     return event.properties.event_type === "mattertag_add" 
