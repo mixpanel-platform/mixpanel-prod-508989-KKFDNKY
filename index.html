@@ -143,14 +143,6 @@ button
       
     </div>
 
-<script>
-  // define date ranges
-var start_date = moment().subtract(10, 'days').calendar()
-var end_date = moment().format('L')
-// console.log(start_date)
-// console.log(end_date)
-
-</script>
 
 <!-- make the queries -->
 <script language="javascript">
@@ -307,6 +299,12 @@ MP.api.jql(function main() {
 <script>
 $(document).on("ready", function(){
   console.log("doc loaded");
+
+  // define date ranges
+var start_date = moment().subtract(10, 'days').calendar()
+var end_date = moment().format('L')
+// console.log(start_date)
+// console.log(end_date)
 
 
 
