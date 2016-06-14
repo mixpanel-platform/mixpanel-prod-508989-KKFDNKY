@@ -171,12 +171,6 @@ function query2() {
 
 MP.api.jql(
 function main() {
-  return Events({
-    from_date: "2016-04-01", //make dates relative
-    to_date: "2016-05-02"
-  })
-
-  //define funnel
   var funnel = [
   function (e) {
     return e.properties.event_type === "model_loaded" && e.properties.start_source === "autoplay" && e.properties.$referrer && e.properties.$referrer.indexOf('airbnb.com') !== -1;
@@ -184,8 +178,11 @@ function main() {
   function (e) {
     return e.properties.event_type === "showcase_gui" || (e.properties.event_type == 'view_pano' && e.properties.navigation_source == 'self_guided');
   }
-]
-
+];
+  return Events({
+    from_date: "2016-04-01",
+    to_date: "2016-05-02"
+  })
   // get the number of steps completed by each user
   .groupByUser(['properties.model_id'], function(steps_completed, events) {
     if (steps_completed === undefined) { steps_completed = 0; }
@@ -233,7 +230,8 @@ function main() {
 
     return funnel_steps;
   });
-}).done(function(results){
+}
+).done(function(results){
     console.log("funnel query: " + results)
     
     //update the view
@@ -285,7 +283,7 @@ MP.api.jql(function main() {
 
   //update the view
   var signup = results;
-  $('#barThree').css("height", signup/150000*100+"%");
+  $('#barThree').css("height", signup/1500000*100+"%");
   $('#SIGNUPS h2').text(signup)
 
 });
